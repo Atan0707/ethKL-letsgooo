@@ -11,6 +11,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ScanTag from './pages/ScanTag';
 import Home from './pages/Home';
 import WriteTag from './pages/WriteTag';
+import History from './pages/History';
 
 export const WalletCtx = createContext();
 const Stack = createNativeStackNavigator();
@@ -87,6 +88,7 @@ function App() {
             <Stack.Screen name="ScanTag" component={ScanTag} />
             <Stack.Screen name="WriteTag" component={WriteTag} />
             <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="History" component={History} />
           </Stack.Navigator>
           <WalletConnectModal
             projectId={projectId}

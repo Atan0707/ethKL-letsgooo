@@ -2,18 +2,23 @@
 pragma solidity ^0.8.0;
 
 contract EthLocker {
+    struct Claim {
+        uint256 amount;
+        uint256 timestamp;
+    }
+
     struct Transaction {
         address sender;
         uint256 amount;
-        uint256 claimedAmount; // Track how much has been claimed
-        address[] claimers;     // List of addresses that claimed ETH
-        mapping(address => uint256) claims; // Amount claimed by each address
+        uint256 claimedAmount;
+        address[] claimers;
+        mapping(address => Claim[]) claims;
     }
 
     mapping(bytes32 => Transaction) public transactions;
 
     event EthLocked(bytes32 indexed transactionHash, address indexed sender, uint256 amount);
-    event EthClaimed(bytes32 indexed transactionHash, address indexed recipient, uint256 amount);
+    event EthClaimed(bytes32 indexed transactionHash, address indexed recipient, uint256 amount, uint256 timestamp);
 
     // Function for the sender to lock ETH and generate a transaction hash
     function lockEth() external payable returns (bytes32) {
@@ -47,17 +52,17 @@ contract EthLocker {
         txn.claimedAmount += requestedAmount;
 
         // Add the claimer to the list if they haven't claimed before
-        if (txn.claims[msg.sender] == 0) {
+        if (txn.claims[msg.sender].length == 0) {
             txn.claimers.push(msg.sender);
         }
-        txn.claims[msg.sender] += requestedAmount;
+        txn.claims[msg.sender].push(Claim(requestedAmount, block.timestamp));
 
         // Transfer ETH to the recipient
         (bool success, ) = msg.sender.call{value: requestedAmount}("");
         require(success, "ETH transfer failed");
 
         // Emit event for claimed ETH
-        emit EthClaimed(transactionHash, msg.sender, requestedAmount);
+        emit EthClaimed(transactionHash, msg.sender, requestedAmount, block.timestamp);
     }
 
     function getTransaction(bytes32 transactionHash) external view returns (address, uint256, uint256, address[] memory) {
@@ -65,11 +70,20 @@ contract EthLocker {
         return (txn.sender, txn.amount, txn.claimedAmount, txn.claimers);
     }
 
-    function getClaimAmount(bytes32 transactionHash, address claimer) external view returns (uint256) {
-        return transactions[transactionHash].claims[claimer];
+    function getClaimHistory(bytes32 transactionHash, address claimer) external view returns (uint256[] memory, uint256[] memory) {
+        Transaction storage txn = transactions[transactionHash];
+        Claim[] storage claims = txn.claims[claimer];
+        uint256[] memory amounts = new uint256[](claims.length);
+        uint256[] memory timestamps = new uint256[](claims.length);
+        
+        for (uint i = 0; i < claims.length; i++) {
+            amounts[i] = claims[i].amount;
+            timestamps[i] = claims[i].timestamp;
+        }
+        
+        return (amounts, timestamps);
     }
 
-    // New function to view the locked ETH amount for a specific transaction hash
     function getLockedEthAmount(bytes32 transactionHash) external view returns (uint256) {
         Transaction storage txn = transactions[transactionHash];
         require(txn.sender != address(0), "Transaction does not exist");

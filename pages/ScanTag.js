@@ -24,6 +24,7 @@ function ScanTag({navigation}) {
   const [ndefData, setNdefData] = useState('');
   const [baseContract, setBaseContract] = useState(null);
   const [requestedAmount, setRequestedAmount] = useState('');
+  const [lockedEthAmount, setLockedEthAmount] = useState(null);
 
   useEffect(() => {
     if (isConnectedCtx && providerCtx) {
@@ -33,7 +34,7 @@ function ScanTag({navigation}) {
           const signer = await ethersProvider.getSigner();
 
           const contract = new ethers.Contract(
-            '0x9F171084b721a0C2c07a5c0B9D496f714fb2f182',
+            '0x2da40b53070b51aa7db88e1bCCb3015C69e412b3',
             abi,
             signer,
           );
@@ -63,6 +64,7 @@ function ScanTag({navigation}) {
         const ndefNfcData = parsedMessages[0];
         setNdefData(ndefNfcData);
         Alert.alert(`nfc tag say: ${ndefNfcData}`);
+        await getLockedEthAmount(ndefNfcData);
       } else {
         Alert.alert(`something wrong bro 😢`);
       }
@@ -71,6 +73,22 @@ function ScanTag({navigation}) {
     } finally {
       NfcManager.cancelTechnologyRequest();
       setLoading(false);
+    }
+  };
+
+  const getLockedEthAmount = async transactionHash => {
+    if (!baseContract) {
+      console.error('Contract is not initialized');
+      return;
+    }
+
+    try {
+      const amount = await baseContract.getLockedEthAmount(transactionHash);
+      const formattedAmount = ethers.formatEther(amount);
+      setLockedEthAmount(formattedAmount);
+    } catch (error) {
+      console.error(`Error getting locked ETH amount: ${error}`);
+      Alert.alert('Failed to get locked ETH amount');
     }
   };
 
@@ -88,6 +106,7 @@ function ScanTag({navigation}) {
       );
       await tx.wait();
       Alert.alert(`Success claiming ${requestedAmount} ETH`);
+      await getLockedEthAmount(transactionHash);
     } catch (error) {
       console.error(`Error in claiming ETH ${error}`);
       Alert.alert('Failed to claim ETH');
@@ -103,6 +122,11 @@ function ScanTag({navigation}) {
           <Text style={styles.dataText}>
             NFC Data: {ndefData || 'No data scanned'}
           </Text>
+          {lockedEthAmount !== null && (
+            <Text style={styles.dataText}>
+              Locked ETH: {lockedEthAmount} ETH
+            </Text>
+          )}
         </View>
 
         {ndefData ? (

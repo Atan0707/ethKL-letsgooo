@@ -1,23 +1,5 @@
 [
   {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "transactionHash",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "uint256",
-        "name": "requestedAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "claimEth",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "anonymous": false,
     "inputs": [
       {
@@ -36,6 +18,12 @@
         "indexed": false,
         "internalType": "uint256",
         "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "timestamp",
         "type": "uint256"
       }
     ],
@@ -68,21 +56,22 @@
     "type": "event"
   },
   {
-    "inputs": [],
-    "name": "lockEth",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "bytes32",
-        "name": "",
+        "name": "transactionHash",
         "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "requestedAmount",
+        "type": "uint256"
       }
     ],
-    "stateMutability": "payable",
+    "name": "claimEth",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
-  },
-  {
-    "stateMutability": "payable",
-    "type": "receive"
   },
   {
     "inputs": [
@@ -97,7 +86,31 @@
         "type": "address"
       }
     ],
-    "name": "getClaimAmount",
+    "name": "getClaimHistory",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "transactionHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getLockedEthAmount",
     "outputs": [
       {
         "internalType": "uint256",
@@ -143,6 +156,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "lockEth",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "bytes32",
@@ -170,5 +196,9 @@
     ],
     "stateMutability": "view",
     "type": "function"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive"
   }
 ]

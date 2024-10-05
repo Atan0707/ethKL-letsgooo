@@ -14,6 +14,11 @@ function Home({navigation}) {
         onPress={() => navigation.navigate('WriteTag')}>
         <Text>Write tag</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.buttonScanTag}
+        onPress={() => navigation.navigate('History')}>
+        <Text>History</Text>
+      </TouchableOpacity>
     </View>
   );
 }
