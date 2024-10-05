@@ -1,0 +1,1075 @@
+ LOG  provider {
+  "events": {
+    "_events": {},
+    "_eventsCount": 2
+  },
+  "rpcProviders": {
+    "eip155": {
+      "name": "eip155",
+      "namespace": {
+        "methods": [
+          "eth_sendTransaction",
+          "personal_sign"
+        ],
+        "chains": [
+          "eip155:534351",
+          "eip155:1"
+        ],
+        "events": [
+          "chainChanged",
+          "accountsChanged"
+        ],
+        "rpcMap": {},
+        "accounts": [
+          "eip155:534351:0x93ab4b67e111fcd35d58cfa10e1a433114e82a5a",
+          "eip155:1:0x93ab4b67e111fcd35d58cfa10e1a433114e82a5a"
+        ]
+      },
+      "events": "[Circular]",
+      "client": {
+        "opts": {
+          "logger": "info",
+          "relayUrl": "wss://relay.walletconnect.com",
+          "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+          "metadata": {
+            "name": "ethKL",
+            "description": "YOUR_PROJECT_DESCRIPTION",
+            "url": "https://your-project-website.com/",
+            "icons": [
+              "https://your-project-logo.com/"
+            ],
+            "redirect": {
+              "native": "YOUR_APP_SCHEME://",
+              "universal": "YOUR_APP_UNIVERSAL_LINK.com"
+            }
+          }
+        },
+        "protocol": "wc",
+        "version": 2,
+        "name": "client",
+        "events": {
+          "_events": {},
+          "_eventsCount": 4
+        },
+        "metadata": "[Circular]",
+        "core": {
+          "opts": "[Circular]",
+          "protocol": "wc",
+          "version": 2,
+          "name": "core",
+          "events": {
+            "_events": {},
+            "_eventsCount": 0
+          },
+          "initialized": true,
+          "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+          "relayUrl": "wss://relay.walletconnect.com",
+          "customStoragePrefix": "",
+          "logger": {
+            "_childLevel": 1,
+            "custom_context": "core"
+          },
+          "heartbeat": {
+            "events": {
+              "_events": {
+                "heartbeat_pulse": [
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "_eventsCount": 1
+            },
+            "interval": 5,
+            "intervalRef": 1274
+          },
+          "crypto": {
+            "core": "[Circular]",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/crypto"
+            },
+            "name": "crypto",
+            "initialized": true,
+            "keychain": {
+              "core": "[Circular]",
+              "logger": {
+                "_childLevel": 3,
+                "custom_context": "core/crypto/keychain"
+              },
+              "keychain": {},
+              "name": "keychain",
+              "version": "0.3",
+              "initialized": true,
+              "storagePrefix": "wc@2:core:"
+            }
+          },
+          "history": {
+            "core": "[Circular]",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/history"
+            },
+            "records": {},
+            "events": {
+              "_events": {},
+              "_eventsCount": 3
+            },
+            "name": "history",
+            "version": "0.3",
+            "cached": [],
+            "initialized": true,
+            "storagePrefix": "wc@2:core:"
+          },
+          "expirer": {
+            "core": "[Circular]",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/expirer"
+            },
+            "expirations": {},
+            "events": {
+              "_events": {
+                "expirer_expired": [
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "_eventsCount": 3
+            },
+            "name": "expirer",
+            "version": "0.3",
+            "cached": [],
+            "initialized": true,
+            "storagePrefix": "wc@2:core:"
+          },
+          "storage": {
+            "asyncStorage": {}
+          },
+          "relayer": {
+            "protocol": "wc",
+            "version": 2,
+            "events": {
+              "_events": {
+                "relayer_message": [
+                  null,
+                  null
+                ]
+              },
+              "_eventsCount": 5
+            },
+            "name": "relayer",
+            "transportExplicitlyClosed": false,
+            "initialized": true,
+            "connectionAttemptInProgress": false,
+            "connectionStatusPollingInterval": 20,
+            "staleConnectionErrors": [
+              "socket hang up",
+              "socket stalled"
+            ],
+            "hasExperiencedNetworkDisruption": false,
+            "core": "[Circular]",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/relayer"
+            },
+            "messages": {
+              "logger": {
+                "_childLevel": 3,
+                "custom_context": "core/relayer/messages"
+              },
+              "core": "[Circular]",
+              "messages": {},
+              "name": "messages",
+              "version": "0.3",
+              "initialized": true,
+              "storagePrefix": "wc@2:core:"
+            },
+            "subscriber": {
+              "relayer": "[Circular]",
+              "logger": {
+                "_childLevel": 3,
+                "custom_context": "core/relayer/subscription"
+              },
+              "subscriptions": {},
+              "topicMap": {
+                "map": {}
+              },
+              "events": {
+                "_events": {
+                  "subscription_deleted": [
+                    null,
+                    null
+                  ]
+                },
+                "_eventsCount": 2
+              },
+              "name": "subscription",
+              "version": "0.3",
+              "pending": {},
+              "cached": [],
+              "initialized": true,
+              "pendingSubscriptionWatchLabel": "pending_sub_watch_label",
+              "pollingInterval": 20,
+              "storagePrefix": "wc@2:core:",
+              "subscribeTimeout": 10000,
+              "restartInProgress": false,
+              "batchSubscribeTopicsLimit": 500,
+              "clientId": "did:key:z6Mkgki7UCcUDa9cwPFsYea2cLUY7fCXTCSRBAXUQZaXA9zJ"
+            },
+            "publisher": {
+              "relayer": "[Circular]",
+              "logger": {
+                "_childLevel": 3,
+                "custom_context": "core/relayer/publisher"
+              },
+              "events": {
+                "_events": {},
+                "_eventsCount": 0
+              },
+              "name": "publisher",
+              "queue": {},
+              "publishTimeout": 10000,
+              "needsTransportRestart": false
+            },
+            "relayUrl": "wss://relay.walletconnect.com",
+            "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+            "provider": {
+              "events": {
+                "_events": {},
+                "_eventsCount": 5
+              },
+              "hasRegisteredEventListeners": true,
+              "connection": {
+                "url": "wss://relay.walletconnect.com?auth=eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtna2k3VUNjVURhOWN3UEZzWWVhMmNMVVk3ZkNYVENTUkJBWFVRWmFYQTl6SiIsInN1YiI6Ijg4MDhjMzUwNDU2YTQ5ZDllOWNkYzU2ZDBlMjQ4NDY1N2JjMDc5MGMwY2Y5YTJhYjk3NjU1OTk3ZWNlMmNjN2UiLCJhdWQiOiJ3c3M6Ly9yZWxheS53YWxsZXRjb25uZWN0LmNvbSIsImlhdCI6MTcyNzMxMDI3NywiZXhwIjoxNzI3Mzk2Njc3fQ.Zmg0iyTLpiVUCTha8c7CjGLXiFpBbi1catQ_Kjl_p-_C3PMSX_imxWApEmgR1yoJdF5GcTsi48XyCEEiMZcABA&projectId=7c684784ed55bc73a74c1aaf288dd50f&ua=wc-2%2Fjs-2.11.0%2Fandroid-34%2Freact-native&useOnCloseEvent=true",
+                "events": {
+                  "_events": {},
+                  "_eventsCount": 4
+                },
+                "registering": false,
+                "socket": {
+                  "CONNECTING": 0,
+                  "OPEN": 1,
+                  "CLOSING": 2,
+                  "CLOSED": 3,
+                  "readyState": 1,
+                  "url": "wss://relay.walletconnect.com?auth=eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtna2k3VUNjVURhOWN3UEZzWWVhMmNMVVk3ZkNYVENTUkJBWFVRWmFYQTl6SiIsInN1YiI6Ijg4MDhjMzUwNDU2YTQ5ZDllOWNkYzU2ZDBlMjQ4NDY1N2JjMDc5MGMwY2Y5YTJhYjk3NjU1OTk3ZWNlMmNjN2UiLCJhdWQiOiJ3c3M6Ly9yZWxheS53YWxsZXRjb25uZWN0LmNvbSIsImlhdCI6MTcyNzMxMDI3NywiZXhwIjoxNzI3Mzk2Njc3fQ.Zmg0iyTLpiVUCTha8c7CjGLXiFpBbi1catQ_Kjl_p-_C3PMSX_imxWApEmgR1yoJdF5GcTsi48XyCEEiMZcABA&projectId=7c684784ed55bc73a74c1aaf288dd50f&ua=wc-2%2Fjs-2.11.0%2Fandroid-34%2Freact-native&useOnCloseEvent=true",
+                  "_eventEmitter": {},
+                  "_socketId": 2,
+                  "_subscriptions": [
+                    {},
+                    {},
+                    {},
+                    {}
+                  ],
+                  "protocol": ""
+                }
+              }
+            }
+          },
+          "pairing": {
+            "core": "[Circular]",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/pairing"
+            },
+            "name": "pairing",
+            "version": "0.3",
+            "events": {
+              "_events": {},
+              "_eventsCount": 1
+            },
+            "initialized": true,
+            "storagePrefix": "wc@2:core:",
+            "ignoredPayloadTypes": [
+              1
+            ],
+            "registeredMethods": [
+              "wc_sessionPropose",
+              "wc_sessionSettle",
+              "wc_sessionUpdate",
+              "wc_sessionExtend",
+              "wc_sessionRequest",
+              "wc_sessionEvent",
+              "wc_sessionDelete",
+              "wc_sessionPing"
+            ],
+            "pairings": {
+              "core": "[Circular]",
+              "logger": {
+                "_childLevel": 3,
+                "custom_context": "core/pairing/pairing"
+              },
+              "name": "pairing",
+              "map": {},
+              "version": "0.3",
+              "cached": [],
+              "initialized": true,
+              "storagePrefix": "wc@2:core:"
+            }
+          },
+          "verify": {
+            "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/verify-api"
+            },
+            "name": "verify-api",
+            "initialized": false,
+            "queue": [],
+            "verifyDisabled": false,
+            "verifyUrl": "https://verify.walletconnect.com",
+            "abortController": {},
+            "isDevEnv": false
+          },
+          "echoClient": {
+            "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/echo"
+            },
+            "context": "echo"
+          }
+        },
+        "logger": {
+          "_childLevel": 1,
+          "custom_context": "client"
+        },
+        "session": {
+          "core": "[Circular]",
+          "logger": "[Circular]",
+          "name": "session",
+          "map": {},
+          "version": "0.3",
+          "cached": [],
+          "initialized": true,
+          "storagePrefix": "wc@2:client:"
+        },
+        "proposal": {
+          "core": "[Circular]",
+          "logger": "[Circular]",
+          "name": "proposal",
+          "map": {},
+          "version": "0.3",
+          "cached": [],
+          "initialized": true,
+          "storagePrefix": "wc@2:client:"
+        },
+        "pendingRequest": {
+          "core": "[Circular]",
+          "logger": "[Circular]",
+          "name": "request",
+          "map": {},
+          "version": "0.3",
+          "cached": [],
+          "initialized": true,
+          "storagePrefix": "wc@2:client:"
+        },
+        "engine": {
+          "client": "[Circular]",
+          "name": "engine",
+          "events": {
+            "_events": {},
+            "_eventsCount": 0
+          },
+          "initialized": true,
+          "ignoredPayloadTypes": [
+            1
+          ],
+          "requestQueue": {
+            "state": "IDLE",
+            "queue": []
+          },
+          "sessionRequestQueue": {
+            "state": "IDLE",
+            "queue": []
+          },
+          "requestQueueDelay": 1
+        }
+      },
+      "httpProviders": {
+        "1": {
+          "events": {
+            "_events": {},
+            "_eventsCount": 0
+          },
+          "hasRegisteredEventListeners": false,
+          "connection": {
+            "url": "https://rpc.walletconnect.com/v1/?chainId=eip155:1&projectId=7c684784ed55bc73a74c1aaf288dd50f",
+            "disableProviderPing": false,
+            "events": {
+              "_events": {},
+              "_eventsCount": 0
+            },
+            "isAvailable": false,
+            "registering": false
+          }
+        },
+        "534351": {
+          "events": {
+            "_events": {},
+            "_eventsCount": 0
+          },
+          "hasRegisteredEventListeners": false,
+          "connection": {
+            "url": "https://rpc.walletconnect.com/v1/?chainId=eip155:534351&projectId=7c684784ed55bc73a74c1aaf288dd50f",
+            "disableProviderPing": false,
+            "events": {
+              "_events": {},
+              "_eventsCount": 0
+            },
+            "isAvailable": false,
+            "registering": false
+          }
+        }
+      },
+      "chainId": 534351
+    }
+  },
+  "shouldAbortPairingAttempt": false,
+  "maxPairingAttempts": 10,
+  "disableProviderPing": false,
+  "providerOpts": {
+    "logger": "info",
+    "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+    "metadata": "[Circular]"
+  },
+  "logger": {
+    "levels": {
+      "values": {
+        "fatal": 60,
+        "error": 50,
+        "warn": 40,
+        "info": 30,
+        "debug": 20,
+        "trace": 10
+      },
+      "labels": {
+        "10": "trace",
+        "20": "debug",
+        "30": "info",
+        "40": "warn",
+        "50": "error",
+        "60": "fatal"
+      }
+    },
+    "_level": "info",
+    "serializers": {},
+    "_serialize": false
+  },
+  "client": "[Circular]",
+  "namespaces": {
+    "eip155": {
+      "methods": [
+        "eth_sendTransaction",
+        "personal_sign"
+      ],
+      "chains": [
+        "eip155:1"
+      ],
+      "events": [
+        "chainChanged",
+        "accountsChanged"
+      ],
+      "rpcMap": {}
+    }
+  },
+  "optionalNamespaces": {},
+  "session": {
+    "topic": "100b062ed585960bdc7af3eab828e1c18eb2a6493ebfff8219deaa7d3101462b",
+    "relay": {
+      "protocol": "irn"
+    },
+    "expiry": 1727914848,
+    "namespaces": {
+      "eip155": {
+        "chains": [
+          "eip155:534351",
+          "eip155:1"
+        ],
+        "methods": [
+          "eth_sendTransaction",
+          "personal_sign"
+        ],
+        "events": [
+          "chainChanged",
+          "accountsChanged"
+        ],
+        "accounts": [
+          "eip155:534351:0x93ab4b67e111fcd35d58cfa10e1a433114e82a5a",
+          "eip155:1:0x93ab4b67e111fcd35d58cfa10e1a433114e82a5a"
+        ]
+      }
+    },
+    "acknowledged": true,
+    "controller": "b1829b6ea6fe39f92e3b636d28d5df93f097ccfa74f75ba14f571caddf8d4515",
+    "self": {
+      "publicKey": "b8e55985fbb263d8c63483ed21b22b36e0c37ff0a0344e672c72e51a7436463b",
+      "metadata": {
+        "name": "ethKL",
+        "description": "YOUR_PROJECT_DESCRIPTION",
+        "url": "https://your-project-website.com/",
+        "icons": [
+          "https://your-project-logo.com/"
+        ],
+        "redirect": {
+          "native": "YOUR_APP_SCHEME://",
+          "universal": "YOUR_APP_UNIVERSAL_LINK.com"
+        }
+      }
+    },
+    "peer": {
+      "publicKey": "b1829b6ea6fe39f92e3b636d28d5df93f097ccfa74f75ba14f571caddf8d4515",
+      "metadata": {
+        "name": "MetaMask Wallet",
+        "description": "MetaMask Wallet Integration",
+        "url": "https://metamask.io/",
+        "icons": [],
+        "redirect": {
+          "native": "metamask://",
+          "universal": "https://metamask.app.link/"
+        }
+      }
+    }
+  }
+}
+
+ LOG  provider {
+  "events": {
+    "_events": {},
+    "_eventsCount": 2
+  },
+  "rpcProviders": {
+    "eip155": {
+      "name": "eip155",
+      "namespace": {
+        "methods": [
+          "eth_sendTransaction",
+          "personal_sign"
+        ],
+        "chains": [
+          "eip155:11155111",
+          "eip155:1"
+        ],
+        "events": [
+          "chainChanged",
+          "accountsChanged"
+        ],
+        "rpcMap": {},
+        "accounts": [
+          "eip155:11155111:0x93ab4b67e111fcd35d58cfa10e1a433114e82a5a",
+          "eip155:1:0x93ab4b67e111fcd35d58cfa10e1a433114e82a5a"
+        ]
+      },
+      "events": "[Circular]",
+      "client": {
+        "opts": {
+          "logger": "info",
+          "relayUrl": "wss://relay.walletconnect.com",
+          "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+          "metadata": {
+            "name": "ethKL",
+            "description": "YOUR_PROJECT_DESCRIPTION",
+            "url": "https://your-project-website.com/",
+            "icons": [
+              "https://your-project-logo.com/"
+            ],
+            "redirect": {
+              "native": "YOUR_APP_SCHEME://",
+              "universal": "YOUR_APP_UNIVERSAL_LINK.com"
+            }
+          }
+        },
+        "protocol": "wc",
+        "version": 2,
+        "name": "client",
+        "events": {
+          "_events": {},
+          "_eventsCount": 4
+        },
+        "metadata": "[Circular]",
+        "core": {
+          "opts": "[Circular]",
+          "protocol": "wc",
+          "version": 2,
+          "name": "core",
+          "events": {
+            "_events": {},
+            "_eventsCount": 0
+          },
+          "initialized": true,
+          "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+          "relayUrl": "wss://relay.walletconnect.com",
+          "customStoragePrefix": "",
+          "logger": {
+            "_childLevel": 1,
+            "custom_context": "core"
+          },
+          "heartbeat": {
+            "events": {
+              "_events": {
+                "heartbeat_pulse": [
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "_eventsCount": 1
+            },
+            "interval": 5,
+            "intervalRef": 1274
+          },
+          "crypto": {
+            "core": "[Circular]",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/crypto"
+            },
+            "name": "crypto",
+            "initialized": true,
+            "keychain": {
+              "core": "[Circular]",
+              "logger": {
+                "_childLevel": 3,
+                "custom_context": "core/crypto/keychain"
+              },
+              "keychain": {},
+              "name": "keychain",
+              "version": "0.3",
+              "initialized": true,
+              "storagePrefix": "wc@2:core:"
+            }
+          },
+          "history": {
+            "core": "[Circular]",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/history"
+            },
+            "records": {},
+            "events": {
+              "_events": {},
+              "_eventsCount": 3
+            },
+            "name": "history",
+            "version": "0.3",
+            "cached": [],
+            "initialized": true,
+            "storagePrefix": "wc@2:core:"
+          },
+          "expirer": {
+            "core": "[Circular]",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/expirer"
+            },
+            "expirations": {},
+            "events": {
+              "_events": {
+                "expirer_expired": [
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "_eventsCount": 3
+            },
+            "name": "expirer",
+            "version": "0.3",
+            "cached": [],
+            "initialized": true,
+            "storagePrefix": "wc@2:core:"
+          },
+          "storage": {
+            "asyncStorage": {}
+          },
+          "relayer": {
+            "protocol": "wc",
+            "version": 2,
+            "events": {
+              "_events": {
+                "relayer_message": [
+                  null,
+                  null
+                ]
+              },
+              "_eventsCount": 5
+            },
+            "name": "relayer",
+            "transportExplicitlyClosed": false,
+            "initialized": true,
+            "connectionAttemptInProgress": false,
+            "connectionStatusPollingInterval": 20,
+            "staleConnectionErrors": [
+              "socket hang up",
+              "socket stalled"
+            ],
+            "hasExperiencedNetworkDisruption": false,
+            "core": "[Circular]",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/relayer"
+            },
+            "messages": {
+              "logger": {
+                "_childLevel": 3,
+                "custom_context": "core/relayer/messages"
+              },
+              "core": "[Circular]",
+              "messages": {},
+              "name": "messages",
+              "version": "0.3",
+              "initialized": true,
+              "storagePrefix": "wc@2:core:"
+            },
+            "subscriber": {
+              "relayer": "[Circular]",
+              "logger": {
+                "_childLevel": 3,
+                "custom_context": "core/relayer/subscription"
+              },
+              "subscriptions": {},
+              "topicMap": {
+                "map": {}
+              },
+              "events": {
+                "_events": {
+                  "subscription_deleted": [
+                    null,
+                    null
+                  ]
+                },
+                "_eventsCount": 2
+              },
+              "name": "subscription",
+              "version": "0.3",
+              "pending": {},
+              "cached": [],
+              "initialized": true,
+              "pendingSubscriptionWatchLabel": "pending_sub_watch_label",
+              "pollingInterval": 20,
+              "storagePrefix": "wc@2:core:",
+              "subscribeTimeout": 10000,
+              "restartInProgress": false,
+              "batchSubscribeTopicsLimit": 500,
+              "clientId": "did:key:z6Mkgki7UCcUDa9cwPFsYea2cLUY7fCXTCSRBAXUQZaXA9zJ"
+            },
+            "publisher": {
+              "relayer": "[Circular]",
+              "logger": {
+                "_childLevel": 3,
+                "custom_context": "core/relayer/publisher"
+              },
+              "events": {
+                "_events": {},
+                "_eventsCount": 0
+              },
+              "name": "publisher",
+              "queue": {},
+              "publishTimeout": 10000,
+              "needsTransportRestart": false
+            },
+            "relayUrl": "wss://relay.walletconnect.com",
+            "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+            "provider": {
+              "events": {
+                "_events": {},
+                "_eventsCount": 5
+              },
+              "hasRegisteredEventListeners": true,
+              "connection": {
+                "url": "wss://relay.walletconnect.com?auth=eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtna2k3VUNjVURhOWN3UEZzWWVhMmNMVVk3ZkNYVENTUkJBWFVRWmFYQTl6SiIsInN1YiI6Ijk1NGI0NWQ3OTE2MGZlMjAzODZiNjM0ZjI2NzdhMzg0YWZkYzE1NWIwYmM5NDkzYjA1M2I3YzYwMGQ2NGZjYWQiLCJhdWQiOiJ3c3M6Ly9yZWxheS53YWxsZXRjb25uZWN0LmNvbSIsImlhdCI6MTcyNzMxMDU2NywiZXhwIjoxNzI3Mzk2OTY3fQ.dwY0Bmxdm1_u4dN92MQ2PjvBEhsb2yYaQtCHtexTHIp0XXqLrPDF77JyHIzKDBPaufdMTExRop1hAicPZF7bDg&projectId=7c684784ed55bc73a74c1aaf288dd50f&ua=wc-2%2Fjs-2.11.0%2Fandroid-34%2Freact-native&useOnCloseEvent=true",
+                "events": {
+                  "_events": {},
+                  "_eventsCount": 4
+                },
+                "registering": false,
+                "socket": {
+                  "CONNECTING": 0,
+                  "OPEN": 1,
+                  "CLOSING": 2,
+                  "CLOSED": 3,
+                  "readyState": 1,
+                  "url": "wss://relay.walletconnect.com?auth=eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtna2k3VUNjVURhOWN3UEZzWWVhMmNMVVk3ZkNYVENTUkJBWFVRWmFYQTl6SiIsInN1YiI6Ijk1NGI0NWQ3OTE2MGZlMjAzODZiNjM0ZjI2NzdhMzg0YWZkYzE1NWIwYmM5NDkzYjA1M2I3YzYwMGQ2NGZjYWQiLCJhdWQiOiJ3c3M6Ly9yZWxheS53YWxsZXRjb25uZWN0LmNvbSIsImlhdCI6MTcyNzMxMDU2NywiZXhwIjoxNzI3Mzk2OTY3fQ.dwY0Bmxdm1_u4dN92MQ2PjvBEhsb2yYaQtCHtexTHIp0XXqLrPDF77JyHIzKDBPaufdMTExRop1hAicPZF7bDg&projectId=7c684784ed55bc73a74c1aaf288dd50f&ua=wc-2%2Fjs-2.11.0%2Fandroid-34%2Freact-native&useOnCloseEvent=true",
+                  "_eventEmitter": {},
+                  "_socketId": 2,
+                  "_subscriptions": [
+                    {},
+                    {},
+                    {},
+                    {}
+                  ],
+                  "protocol": ""
+                }
+              }
+            }
+          },
+          "pairing": {
+            "core": "[Circular]",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/pairing"
+            },
+            "name": "pairing",
+            "version": "0.3",
+            "events": {
+              "_events": {},
+              "_eventsCount": 1
+            },
+            "initialized": true,
+            "storagePrefix": "wc@2:core:",
+            "ignoredPayloadTypes": [
+              1
+            ],
+            "registeredMethods": [
+              "wc_sessionPropose",
+              "wc_sessionSettle",
+              "wc_sessionUpdate",
+              "wc_sessionExtend",
+              "wc_sessionRequest",
+              "wc_sessionEvent",
+              "wc_sessionDelete",
+              "wc_sessionPing"
+            ],
+            "pairings": {
+              "core": "[Circular]",
+              "logger": {
+                "_childLevel": 3,
+                "custom_context": "core/pairing/pairing"
+              },
+              "name": "pairing",
+              "map": {},
+              "version": "0.3",
+              "cached": [],
+              "initialized": true,
+              "storagePrefix": "wc@2:core:"
+            }
+          },
+          "verify": {
+            "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/verify-api"
+            },
+            "name": "verify-api",
+            "initialized": false,
+            "queue": [],
+            "verifyDisabled": false,
+            "verifyUrl": "https://verify.walletconnect.com",
+            "abortController": {},
+            "isDevEnv": false
+          },
+          "echoClient": {
+            "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+            "logger": {
+              "_childLevel": 2,
+              "custom_context": "core/echo"
+            },
+            "context": "echo"
+          }
+        },
+        "logger": {
+          "_childLevel": 1,
+          "custom_context": "client"
+        },
+        "session": {
+          "core": "[Circular]",
+          "logger": "[Circular]",
+          "name": "session",
+          "map": {},
+          "version": "0.3",
+          "cached": [],
+          "initialized": true,
+          "storagePrefix": "wc@2:client:"
+        },
+        "proposal": {
+          "core": "[Circular]",
+          "logger": "[Circular]",
+          "name": "proposal",
+          "map": {},
+          "version": "0.3",
+          "cached": [],
+          "initialized": true,
+          "storagePrefix": "wc@2:client:"
+        },
+        "pendingRequest": {
+          "core": "[Circular]",
+          "logger": "[Circular]",
+          "name": "request",
+          "map": {},
+          "version": "0.3",
+          "cached": [],
+          "initialized": true,
+          "storagePrefix": "wc@2:client:"
+        },
+        "engine": {
+          "client": "[Circular]",
+          "name": "engine",
+          "events": {
+            "_events": {},
+            "_eventsCount": 0
+          },
+          "initialized": true,
+          "ignoredPayloadTypes": [
+            1
+          ],
+          "requestQueue": {
+            "state": "IDLE",
+            "queue": []
+          },
+          "sessionRequestQueue": {
+            "state": "IDLE",
+            "queue": []
+          },
+          "requestQueueDelay": 1
+        }
+      },
+      "httpProviders": {
+        "1": {
+          "events": {
+            "_events": {},
+            "_eventsCount": 0
+          },
+          "hasRegisteredEventListeners": false,
+          "connection": {
+            "url": "https://rpc.walletconnect.com/v1/?chainId=eip155:1&projectId=7c684784ed55bc73a74c1aaf288dd50f",
+            "disableProviderPing": false,
+            "events": {
+              "_events": {},
+              "_eventsCount": 0
+            },
+            "isAvailable": false,
+            "registering": false
+          }
+        },
+        "11155111": {
+          "events": {
+            "_events": {},
+            "_eventsCount": 1
+          },
+          "hasRegisteredEventListeners": true,
+          "connection": {
+            "url": "https://rpc.walletconnect.com/v1/?chainId=eip155:11155111&projectId=7c684784ed55bc73a74c1aaf288dd50f",
+            "disableProviderPing": false,
+            "events": {
+              "_events": {},
+              "_eventsCount": 4
+            },
+            "isAvailable": true,
+            "registering": false
+          }
+        }
+      },
+      "chainId": 11155111
+    }
+  },
+  "shouldAbortPairingAttempt": false,
+  "maxPairingAttempts": 10,
+  "disableProviderPing": false,
+  "providerOpts": {
+    "logger": "info",
+    "projectId": "7c684784ed55bc73a74c1aaf288dd50f",
+    "metadata": "[Circular]"
+  },
+  "logger": {
+    "levels": {
+      "values": {
+        "fatal": 60,
+        "error": 50,
+        "warn": 40,
+        "info": 30,
+        "debug": 20,
+        "trace": 10
+      },
+      "labels": {
+        "10": "trace",
+        "20": "debug",
+        "30": "info",
+        "40": "warn",
+        "50": "error",
+        "60": "fatal"
+      }
+    },
+    "_level": "info",
+    "serializers": {},
+    "_serialize": false
+  },
+  "client": "[Circular]",
+  "namespaces": {
+    "eip155": {
+      "methods": [
+        "eth_sendTransaction",
+        "personal_sign"
+      ],
+      "chains": [
+        "eip155:1"
+      ],
+      "events": [
+        "chainChanged",
+        "accountsChanged"
+      ],
+      "rpcMap": {}
+    }
+  },
+  "optionalNamespaces": {},
+  "session": {
+    "topic": "3ea849127abf7a13d0f217da50c84743040e7f29aa55e37bfa7b4ef334c0b07a",
+    "relay": {
+      "protocol": "irn"
+    },
+    "expiry": 1727915130,
+    "namespaces": {
+      "eip155": {
+        "chains": [
+          "eip155:11155111",
+          "eip155:1"
+        ],
+        "methods": [
+          "eth_sendTransaction",
+          "personal_sign"
+        ],
+        "events": [
+          "chainChanged",
+          "accountsChanged"
+        ],
+        "accounts": [
+          "eip155:11155111:0x93ab4b67e111fcd35d58cfa10e1a433114e82a5a",
+          "eip155:1:0x93ab4b67e111fcd35d58cfa10e1a433114e82a5a"
+        ]
+      }
+    },
+    "acknowledged": true,
+    "controller": "6e85c2c5e76610a2ab868f431a6d44763e059f115a2505c0e68b3980a5fce756",
+    "self": {
+      "publicKey": "a93e9546c02175c0a93e8e205a2e31cf1f9486a894c70fb98809313c90da9857",
+      "metadata": {
+        "name": "ethKL",
+        "description": "YOUR_PROJECT_DESCRIPTION",
+        "url": "https://your-project-website.com/",
+        "icons": [
+          "https://your-project-logo.com/"
+        ],
+        "redirect": {
+          "native": "YOUR_APP_SCHEME://",
+          "universal": "YOUR_APP_UNIVERSAL_LINK.com"
+        }
+      }
+    },
+    "peer": {
+      "publicKey": "6e85c2c5e76610a2ab868f431a6d44763e059f115a2505c0e68b3980a5fce756",
+      "metadata": {
+        "name": "MetaMask Wallet",
+        "description": "MetaMask Wallet Integration",
+        "url": "https://metamask.io/",
+        "icons": [],
+        "redirect": {
+          "native": "metamask://",
+          "universal": "https://metamask.app.link/"
+        }
+      }
+    }
+  }
+}
