@@ -1,5 +1,5 @@
 import {colors, theme} from '../theme';
-import {useCallback, useContext, useEffect, useState} from 'react';
+import { useContext, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -14,6 +14,7 @@ import NfcManager, {NfcTech, Ndef} from 'react-native-nfc-manager';
 import {WalletCtx} from '../App';
 import {ethers} from 'ethers';
 import abi from '../contract/abi.json';
+import React from 'react';
 
 NfcManager.start();
 
@@ -66,7 +67,7 @@ function ScanTag({navigation}) {
         Alert.alert(`nfc tag say: ${ndefNfcData}`);
         await getLockedEthAmount(ndefNfcData);
       } else {
-        Alert.alert(`something wrong bro 😢`);
+        Alert.alert('something wrong bro 😢');
       }
     } catch (err) {
       console.warn(`HAHAHAHAHA error: ${err}`);
@@ -137,7 +138,7 @@ function ScanTag({navigation}) {
               value={requestedAmount}
               onChangeText={setRequestedAmount}
               keyboardType="numeric"
-              placeholderTextColor={colors.deepPeriwinkle}
+              placeholderTextColor={colors.black}
             />
             {requestedAmount && (
               <TouchableOpacity
@@ -156,7 +157,7 @@ function ScanTag({navigation}) {
         <TouchableOpacity
           style={styles.homeButton}
           onPress={() => navigation.navigate('Home')}>
-          <Text style={([styles.buttonText], {color: '#5A4FCF'})}>
+          <Text style={([styles.buttonText], {color: 'black'})}>
             Back to Home
           </Text>
         </TouchableOpacity>
@@ -164,7 +165,7 @@ function ScanTag({navigation}) {
         {loading && (
           <ActivityIndicator
             size={'large'}
-            color={colors.deepPeriwinkle}
+            color={colors.black}
             style={styles.loader}
           />
         )}
@@ -199,7 +200,7 @@ const styles = StyleSheet.create({
   },
   scanButton: {
     ...theme.button,
-    backgroundColor: colors.deepPeriwinkle,
+    backgroundColor: 'black',
     width: '100%',
   },
   claimContainer: {
@@ -220,11 +221,10 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: colors.softLilac,
     borderWidth: 2,
-    borderColor: colors.deepPeriwinkle,
+    borderColor: colors.black,
   },
   buttonText: {
     ...theme.buttonText,
-    color: colors.white,
   },
   loader: {
     marginTop: 20,

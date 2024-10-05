@@ -3,6 +3,7 @@ import {useContext, useEffect, useState} from 'react';
 import {Button, StyleSheet, View, Text} from 'react-native';
 import {ethers} from 'ethers';
 import {WalletCtx} from '../App';
+import React from 'react';
 
 function Navbar({handleConnection}) {
   const {addressCtx, isConnectedCtx, providerCtx} = useContext(WalletCtx);
@@ -50,7 +51,7 @@ function Navbar({handleConnection}) {
       <Button
         onPress={handleConnection}
         title={isConnectedCtx ? 'Disconnect' : 'Connect'}
-        color={'#169fb1'}
+        color={'#c59f59'}
       />
     </View>
   );
@@ -60,7 +61,8 @@ const styles = StyleSheet.create({
   navbar: {
     width: '100%',
     padding: 15,
-    backgroundColor: colors.deepPeriwinkle,
+    // backgroundColor: colors.deepPeriwinkle,
+    backgroundColor: colors.black,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

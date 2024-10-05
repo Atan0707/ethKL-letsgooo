@@ -1,5 +1,6 @@
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {colors, theme} from '../theme.js';
+import React from 'react';
 
 function Home({navigation}) {
   return (
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
   buttonScanTag: {
     ...theme.button,
     width: '80%',
+    backgroundColor: colors.black,
   },
 });
 export default Home;

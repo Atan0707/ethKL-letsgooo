@@ -113,9 +113,9 @@ function History({navigation}) {
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.buttonText}>Home</Text>
+        <Text style={styles.buttonHome}>Home</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={getTransactionHistory} style={styles.button}>
+      <TouchableOpacity onPress={getTransactionHistory} style={styles.button2}>
         <Text style={styles.buttonText}>Get Transaction Data</Text>
       </TouchableOpacity>
       {transactionInfo && (
@@ -153,16 +153,28 @@ const styles = StyleSheet.create({
     ...theme.button,
     width: '80%',
     marginBottom: 20,
+    backgroundColor: colors.black,
+  },
+  button2: {
+    ...theme.button,
+    width: '80%',
+    marginBottom: 20,
+    borderColor: 'black',
+    backgroundColor: colors.softLilac,
+    borderWidth: 2, // Adjust the width as needed
+    color: colors.black,
   },
   buttonText: {
     ...theme.buttonText,
-    color: colors.white,
+    color: colors.black,
+    
+    
   },
   tableContainer: {
     width: '100%',
     marginTop: 20,
     borderWidth: 1,
-    borderColor: colors.deepPeriwinkle,
+    borderColor: colors.black,
     borderRadius: 10,
     overflow: 'hidden',
   },
@@ -171,13 +183,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     padding: 10,
-    backgroundColor: colors.deepPeriwinkle,
+    backgroundColor: colors.white,
     color: colors.white,
   },
   tableRow: {
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderColor: colors.deepPeriwinkle,
+  },
+  buttonHome: {
+    ...theme.buttonText,
+    color: colors.white,
   },
   tableHeader: {
     flex: 1,
