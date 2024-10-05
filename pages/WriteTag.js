@@ -32,7 +32,7 @@ function WriteTag({navigation}) {
           const signer = await ethersProvider.getSigner();
 
           const contract = new ethers.Contract(
-            '0x2da40b53070b51aa7db88e1bCCb3015C69e412b3',
+            '0x29Dc9A21190D63A8f2505B27a67b268377a0ed4c',
             abi,
             signer,
           );

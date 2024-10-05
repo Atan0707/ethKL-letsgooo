@@ -17,6 +17,9 @@ contract EthLocker {
 
     mapping(bytes32 => Transaction) public transactions;
 
+    // New mapping to store transaction hashes for each sender
+    mapping(address => bytes32[]) public senderTransactions;
+
     event EthLocked(bytes32 indexed transactionHash, address indexed sender, uint256 amount);
     event EthClaimed(bytes32 indexed transactionHash, address indexed recipient, uint256 amount, uint256 timestamp);
 
@@ -32,6 +35,9 @@ contract EthLocker {
         txn.sender = msg.sender;
         txn.amount = msg.value;
         txn.claimedAmount = 0;
+
+        // Add the transaction hash to the sender's list
+        senderTransactions[msg.sender].push(transactionHash);
 
         // Emit event for locked ETH
         emit EthLocked(transactionHash, msg.sender, msg.value);
@@ -88,6 +94,11 @@ contract EthLocker {
         Transaction storage txn = transactions[transactionHash];
         require(txn.sender != address(0), "Transaction does not exist");
         return txn.amount - txn.claimedAmount;
+    }
+
+    // New function to get all transaction hashes for a given address
+    function getTransactionHashesBySender(address sender) external view returns (bytes32[] memory) {
+        return senderTransactions[sender];
     }
 
     // Fallback function to accept ETH directly

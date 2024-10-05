@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import {theme, colors} from '../theme';
 import {useContext, useEffect, useState} from 'react';
@@ -16,6 +17,8 @@ function History({navigation}) {
   const {providerCtx, isConnectedCtx} = useContext(WalletCtx);
   const [baseContract, setBaseContract] = useState(null);
   const [transactionInfo, setTransactionInfo] = useState(null);
+  const [transactionHashes, setTransactionHashes] = useState([]);
+  const [selectedHash, setSelectedHash] = useState(null);
 
   useEffect(() => {
     if (isConnectedCtx && providerCtx) {
@@ -25,7 +28,7 @@ function History({navigation}) {
           const signer = await ethersProvider.getSigner();
 
           const contract = new ethers.Contract(
-            '0x2da40b53070b51aa7db88e1bCCb3015C69e412b3',
+            '0x29Dc9A21190D63A8f2505B27a67b268377a0ed4c',
             abi,
             signer,
           );
@@ -40,16 +43,36 @@ function History({navigation}) {
     }
   }, [isConnectedCtx, providerCtx]);
 
-  useEffect(() => {
-    if (transactionInfo) {
-      console.log('Transaction Info:', transactionInfo);
-    }
-  }, [transactionInfo]);
-
-  async function getTransactionHistory() {
+  async function getTransactionHashes() {
     try {
-      const transactionHash =
-        '0xdd112a0ea4654319d5754587445763c14c4f0845d9deaed766f07f750cb82673';
+      const ethersProvider = new ethers.BrowserProvider(providerCtx);
+      const signer = await ethersProvider.getSigner();
+      const address = await signer.getAddress();
+      console.log('Sender address:', address);
+      console.log('Contract address:', baseContract.target);
+
+      if (typeof baseContract.getTransactionHashesBySender !== 'function') {
+        console.error('getTransactionHashesBySender is not a function');
+        return;
+      }
+
+      const hashes = await baseContract.getTransactionHashesBySender(address);
+      console.log('Fetched hashes:', hashes);
+
+      // Create a new array from the hashes and then reverse it
+      const reversedHashes = Array.from(hashes).reverse();
+      setTransactionHashes(reversedHashes);
+    } catch (error) {
+      console.error('Error fetching transaction hashes:', error);
+      if (error.reason) console.error('Error reason:', error.reason);
+      if (error.code) console.error('Error code:', error.code);
+      if (error.transaction)
+        console.error('Error transaction:', error.transaction);
+    }
+  }
+
+  async function getTransactionHistory(transactionHash) {
+    try {
       console.log('Querying transaction hash:', transactionHash);
 
       const transaction = await baseContract.getTransaction(transactionHash);
@@ -82,7 +105,7 @@ function History({navigation}) {
             claimsData.push({
               claimer,
               amount: amounts[i],
-              timestamp: Number(timestamps[i]), // Convert BigNumber to JavaScript number
+              timestamp: Number(timestamps[i]),
             });
           }
         } else {
@@ -93,7 +116,6 @@ function History({navigation}) {
         }
       }
 
-      // Sort by latest timestamp
       claimsData.sort((a, b) => b.timestamp - a.timestamp);
 
       console.log('Final claimsData:', claimsData);
@@ -104,48 +126,81 @@ function History({navigation}) {
   }
 
   function formatTimestampToMalaysiaTime(timestamp) {
-    const date = new Date(timestamp * 1000); // Convert to milliseconds
+    const date = new Date(timestamp * 1000);
     return date.toLocaleString('en-MY', {timeZone: 'Asia/Kuala_Lumpur'});
   }
 
+  function formatPublicKey(publicKey) {
+    if (publicKey.length <= 8) return publicKey;
+    return `${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`;
+  }
+
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.buttonText}>Home</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={getTransactionHistory} style={styles.button}>
-        <Text style={styles.buttonText}>Get Transaction Data</Text>
-      </TouchableOpacity>
-      {transactionInfo && (
-        <View style={styles.tableContainer}>
-          <Text style={styles.tableTitle}>Transaction Data</Text>
-          <View style={styles.tableRow}>
-            <Text style={styles.tableHeader}>Public Key</Text>
-            <Text style={styles.tableHeader}>Amount Claimed</Text>
-            <Text style={styles.tableHeader}>Time (Malaysia)</Text>
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.buttonText}>Home</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={getTransactionHashes} style={styles.button}>
+          <Text style={styles.buttonText}>Get My Transactions</Text>
+        </TouchableOpacity>
+        {transactionHashes.length > 0 && (
+          <View style={styles.hashListContainer}>
+            <Text style={styles.tableTitle}>Your Transactions</Text>
+            <FlatList
+              data={transactionHashes}
+              keyExtractor={item => item}
+              renderItem={({item}) => (
+                <TouchableOpacity
+                  style={styles.hashItem}
+                  onPress={() => {
+                    setSelectedHash(item);
+                    getTransactionHistory(item);
+                  }}>
+                  <Text style={styles.hashText}>{item}</Text>
+                </TouchableOpacity>
+              )}
+              nestedScrollEnabled
+            />
           </View>
-          {transactionInfo.map((info, index) => (
-            <View key={index} style={styles.tableRow}>
-              <Text style={styles.tableCell}>{info.claimer}</Text>
-              <Text style={styles.tableCell}>
-                {ethers.formatEther(info.amount)} ETH
-              </Text>
-              <Text style={styles.tableCell}>
-                {formatTimestampToMalaysiaTime(info.timestamp)}
-              </Text>
+        )}
+        {transactionInfo && (
+          <View style={styles.tableContainer}>
+            <Text style={styles.tableTitle}>Transaction Data</Text>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableHeader}>Public Key</Text>
+              <Text style={styles.tableHeader}>Amount Claimed</Text>
+              <Text style={styles.tableHeader}>Time (Malaysia)</Text>
             </View>
-          ))}
-        </View>
-      )}
-    </ScrollView>
+            {transactionInfo.map((info, index) => (
+              <View key={index} style={styles.tableRow}>
+                <Text style={styles.tableCell}>
+                  {formatPublicKey(info.claimer)}
+                </Text>
+                <Text style={styles.tableCell}>
+                  {ethers.formatEther(info.amount)} ETH
+                </Text>
+                <Text style={styles.tableCell}>
+                  {formatTimestampToMalaysiaTime(info.timestamp)}
+                </Text>
+              </View>
+            ))}
+          </View>
+        )}
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    ...theme.container,
+    flex: 1,
+    backgroundColor: theme.container.backgroundColor,
+  },
+  scrollContent: {
+    flexGrow: 1,
     alignItems: 'center',
     padding: 20,
   },
@@ -192,6 +247,19 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     textAlign: 'center',
+  },
+  hashListContainer: {
+    width: '100%',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  hashItem: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderColor: colors.deepPeriwinkle,
+  },
+  hashText: {
+    color: colors.deepPeriwinkle,
   },
 });
 

@@ -1,2 +1,2 @@
-0x91f9D656e2041Ba6cEde5483BB251467e2047F87 - sepolia eth contract address
-0x9F171084b721a0C2c07a5c0B9D496f714fb2f182 - scroll sepolia contract address
+0x29Dc9A21190D63A8f2505B27a67b268377a0ed4c - sepolia eth contract address
+0x7d1E59d09729ab9E90330718f53212b8F184d5fB - manta contract address
