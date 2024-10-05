@@ -13,6 +13,7 @@ import {
 import NfcManager, {NfcTech, Ndef} from 'react-native-nfc-manager';
 import {WalletCtx} from '../App';
 import abi from '../contract/abi.json';
+import React from 'react';
 
 NfcManager.start();
 
@@ -117,7 +118,7 @@ function WriteTag({navigation}) {
         value={lockedEth}
         onChangeText={setLockedEth}
         keyboardType="numeric"
-        placeholderTextColor={'green'}
+        placeholderTextColor={'black'}
       />
       {lockedEth && !transactionHash
         ? lockedEth && (
@@ -128,7 +129,7 @@ function WriteTag({navigation}) {
         : transactionHash && (
             <TouchableOpacity
               onPress={writeNdef}
-              style={[styles.button, {backgroundColor: '#10bb9c'}]}>
+              style={[styles.button, {backgroundColor: '#c59f59'}]}>
               <Text style={{color: 'black'}}>Lock ETH to NFC</Text>
             </TouchableOpacity>
           )}
@@ -136,7 +137,7 @@ function WriteTag({navigation}) {
       <TouchableOpacity
         style={styles.homeButton}
         onPress={() => navigation.navigate('Home')}>
-        <Text style={([styles.buttonText], {color: '#5A4FCF'})}>
+        <Text style={([styles.buttonText], {color: 'black'})}>
           Back to Home
         </Text>
       </TouchableOpacity>
@@ -160,13 +161,15 @@ const styles = StyleSheet.create({
   input: {
     ...theme.input,
     width: '80%',
+    borderColor: 'black',
   },
   homeButton: {
     ...theme.button,
     width: '80%',
     backgroundColor: colors.softLilac,
     borderWidth: 2,
-    borderColor: colors.deepPeriwinkle,
+    borderColor: colors.black,
+    color: colors.black,
   },
 });
 
