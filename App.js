@@ -1,5 +1,5 @@
 import {colors, theme} from './theme';
-import {StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import Navbar from './components/Navbar';
 import {
   useWalletConnectModal,
@@ -12,6 +12,7 @@ import ScanTag from './pages/ScanTag';
 import Home from './pages/Home';
 import WriteTag from './pages/WriteTag';
 import History from './pages/History';
+import React from 'react';
 
 export const WalletCtx = createContext();
 const Stack = createNativeStackNavigator();
@@ -82,6 +83,13 @@ function App() {
       <NavigationContainer>
         <View style={styles.Home}>
           <Navbar handleConnection={handleConnection} />
+          <View>
+            <Image
+              source={require('./public/blockcash.png')}
+              style={styles.image}
+              resizeMode="contain"
+            />
+          </View>
           <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{headerShown: false}}>
@@ -115,6 +123,12 @@ function App() {
 const styles = StyleSheet.create({
   Home: {
     ...theme.container,
+  },
+  image: {
+    // width: 100,
+    // height: 100,
+    alignSelf: 'center',
+    marginTop: 10,
   },
 });
 

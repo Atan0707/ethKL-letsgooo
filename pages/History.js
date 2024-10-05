@@ -208,6 +208,16 @@ const styles = StyleSheet.create({
     ...theme.button,
     width: '80%',
     marginBottom: 20,
+    backgroundColor: colors.black,
+  },
+  button2: {
+    ...theme.button,
+    width: '80%',
+    marginBottom: 20,
+    borderColor: 'black',
+    backgroundColor: colors.softLilac,
+    borderWidth: 2, // Adjust the width as needed
+    color: colors.black,
   },
   buttonText: {
     ...theme.buttonText,
@@ -217,7 +227,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 20,
     borderWidth: 1,
-    borderColor: colors.deepPeriwinkle,
+    borderColor: colors.black,
     borderRadius: 10,
     overflow: 'hidden',
   },
@@ -226,13 +236,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     padding: 10,
-    backgroundColor: colors.deepPeriwinkle,
+    backgroundColor: colors.black,
     color: colors.white,
   },
   tableRow: {
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderColor: colors.deepPeriwinkle,
+  },
+  buttonHome: {
+    ...theme.buttonText,
+    color: colors.white,
   },
   tableHeader: {
     flex: 1,
