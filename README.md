@@ -1,79 +1,66 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# BlockCash: NFC-Enabled Ethereum Transactions
 
-# Getting Started
+BlockCash is a React Native mobile application that enables Ethereum transactions using NFC technology. This project was developed for the EthKL hackathon, showcasing innovative ways to interact with blockchain technology.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Features
 
-## Step 1: Start the Metro Server
+- Connect to Ethereum wallets using WalletConnect
+- Lock ETH into a smart contract
+- Write transaction hashes to NFC tags
+- Scan NFC tags to claim locked ETH
+- View transaction history
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Technology Stack
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- React Native
+- Ethers.js
+- WalletConnect
+- React Native NFC Manager
 
-```bash
-# using npm
-npm start
+## Smart Contracts
 
-# OR using Yarn
-yarn start
-```
+The project uses smart contracts deployed on two testnets:
 
-## Step 2: Start your Application
+- Scroll Testnet: [0x29Dc9A21190D63A8f2505B27a67b268377a0ed4c](https://sepolia.scrollscan.com/address/0x29Dc9A21190D63A8f2505B27a67b268377a0ed4c#code)
+- Manta Testnet: [0x7d1E59d09729ab9E90330718f53212b8F184d5fB](https://pacific-explorer.sepolia-testnet.manta.network/address/0x12D7a9f11070ecAd0a39238887AF880703eB0919?tab=contract)
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## Getting Started
 
-### For Android
+1. Clone the repository
+2. Install dependencies:
+   ```
+   yarn install
+   ```
+3. Start the Metro bundler:
+   ```
+   yarn start
+   ```
+4. Run the app on Android or iOS:
+   ```
+   yarn android
+   # or
+   yarn ios
+   ```
 
-```bash
-# using npm
-npm run android
+## How It Works
 
-# OR using Yarn
-yarn android
-```
+1. Users connect their Ethereum wallet using WalletConnect.
+2. They can lock ETH into the smart contract, which generates a transaction hash.
+3. This hash can be written to an NFC tag.
+4. Another user can scan the NFC tag to claim the locked ETH.
+5. The app provides a history of transactions for transparency.
 
-### For iOS
+## Project Structure
 
-```bash
-# using npm
-npm run ios
+- `App.js`: Main application component and navigation setup
+- `pages/`: Contains individual screen components
+- `components/`: Reusable UI components
+- `contract/`: Smart contract ABI and related files
 
-# OR using Yarn
-yarn ios
-```
+## Contributing
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## License
 
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project is open source and available under the [MIT License](LICENSE).
